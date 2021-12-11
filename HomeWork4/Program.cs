@@ -138,14 +138,43 @@ namespace HomeWork4 // Note: actual namespace depends on the project name.
 
         static void Task9(int[] mas)
         {
-            int current = 0;
-            int min = Task1(mas);
-            if (min != current)
+            int min, temp;
+
+            for (int i = 0; i < mas.Length - 1; i++)
             {
-                Swap(ref mas[min], ref mas[current]);
+                min = i;
+
+                for (int j = i + 1; j < mas.Length; j++)
+                {
+                    if (mas[j] < mas[min])
+                    {
+                        min = j;
+                    }
+                }
+
+                if (min != i)
+                {
+                    temp = mas[i];
+                    mas[i] = mas[min];
+                    mas[min] = temp;
+                }
             }
         }
 
+        static void Task10(int[] mas)
+        {
+            for (int i = 0; i < mas.Length; i++)
+            {
+                int current = mas[i];
+                int j = i;
+                while (j > 0 && current > mas[j - 1])
+                {
+                    mas[j] = mas[j - 1];
+                    j--;
+                }
+                mas[j] = current;
+            }
+        }
 
         public static void Main(string[] args)
         {
@@ -177,7 +206,8 @@ namespace HomeWork4 // Note: actual namespace depends on the project name.
             //}
             //Console.WriteLine(Task7(array));
             //Task8(array);
-            Task9(array);
+            //Task9(array);
+            Task10(array);
             for (int i = 0; i < array.Length; i++)
             {
                 Console.Write($"{array[i]} ");
